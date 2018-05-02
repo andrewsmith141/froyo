@@ -1,0 +1,45 @@
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/list_listings"
+            android:checkable="true"
+            android:icon="@drawable/ic_list_black"
+            android:title="@string/listings_page" />
+        <item
+            android:id="@+id/list_Job"
+            android:icon="@drawable/ic_search"
+            android:title="Job Search" />
+        <item
+            android:id="@+id/list_deliveries"
+            android:icon="@drawable/ic_deliveries"
+
+            android:title="Deliveries" />
+        <item
+            android:id="@+id/list_reviews"
+            android:icon="@drawable/ic_review"
+            android:title="Reviews" />
+    </group>
+
+    <item android:title="Account">
+        <menu>
+            <item
+                android:id="@+id/list_account"
+                android:icon="@drawable/ic_account_circle"
+                android:title="My Account" />
+            <item
+                android:id="@+id/log_out"
+                android:icon="@android:drawable/ic_lock_power_off"
+                android:title="Log Out" />
+
+
+
+        </menu>
+    </item>
+
+</menu>
