@@ -50,9 +50,12 @@ public class ListingsFragment extends Fragment {
             public void onClick(View v){
 
                 //  TODO - Create a new fragment that connects to database and allows to read/write data
-                Fragment fragmentAddListing = new Fragment();
+                Fragment fragmentAddListing = new AddListingFragment();
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                fragmentManager.beginTransaction().add(R.id.fragment_container, fragmentAddListing).commit();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, fragmentAddListing)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
