@@ -18,8 +18,10 @@ public class Listing {
     /   Image of item       -> TBD
     */
 
-    private String id, itemName, itemSize, fromLocation, toLocation;
-    private int weight;
+    private String id, itemName;
+    //fromLocation, toLocation;
+    private ItemSize itemSize;
+    private double weight;
 
 
 }
