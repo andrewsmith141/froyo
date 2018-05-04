@@ -19,6 +19,7 @@ import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -30,12 +31,13 @@ import static android.app.Activity.RESULT_OK;
  */
 public class AddListingFragment extends Fragment {
 
-    private Context mContext  = getContext();
+    //  Attributes
+    private DatabaseReference database;
     private FirebaseAuth mAuth;
-    private DatabaseReference rootRef;
 
-    private EditText item_name, item_weight, item_size, item_from, item_to, item_location;
-    private ImageView dropPinView;
+    //  Used for
+    private ItemSize itemSize;
+    private EditText item_name, item_weight, item_from, item_to;
     private Button submit_listing_button, from_location_button, to_location_button;
 
 
@@ -50,12 +52,18 @@ public class AddListingFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_listing, container, false);
 
-        rootRef= FirebaseDatabase.getInstance().getReference();
+        database = FirebaseDatabase.getInstance().getReference();
 
+        mAuth = FirebaseAuth.getInstance();
+
+        item_name = view.findViewById(R.id.editText_item_name);
+        item_weight = view.findViewById(R.id.editText_item_weight);
         from_location_button = view.findViewById(R.id.button_from_location);
         to_location_button = view.findViewById(R.id.button_to_location);
         item_from = view.findViewById(R.id.editText_from_location);
         item_to = view.findViewById(R.id.editText_to_location);
+
+        submit_listing_button = view.findViewById(R.id.button_add_listing);
 
 
         from_location_button.setOnClickListener(new View.OnClickListener() {
@@ -104,8 +112,29 @@ public class AddListingFragment extends Fragment {
            }
         });
 
+        submit_listing_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseUser user = mAuth.getCurrentUser();
+                double weight = Double.parseDouble(item_weight.getText().toString());
+                writeNewListing(
+                        user.getUid(),
+                        item_name.getText().toString(),
+                        item_from.getText().toString(),
+                        item_to.getText().toString(),
+                        weight );
+            }
+        });
+
 
         return view;
+    }
+
+    private void writeNewListing(String id, String itemName, String fromLocation, String toLocation,
+                                 double weight){
+        Listing listing = new Listing(id, itemName, fromLocation, toLocation, weight);
+
+        database.child("Listings").child(id).setValue(listing);
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

@@ -18,10 +18,26 @@ public class Listing {
     /   Image of item       -> TBD
     */
 
-    private String id, itemName;
-    //fromLocation, toLocation;
-    private ItemSize itemSize;
+    private String id;
+    private String itemName;
+    private String fromLocation;
+    private String toLocation;
     private double weight;
+
+    public Listing(){}
+
+    public Listing(String id, String itemName, String fromLocation, String toLocation,
+                   double weight){
+        this.id = id;
+        this.itemName = itemName;
+        this.fromLocation = fromLocation;
+        this.toLocation = toLocation;
+        this.weight = weight;
+    }
+
+    public String getId(){return this.id;}
+    public String getName() {return this.itemName;}
+    public double getWeight() {return this.weight;}
 
 
 }

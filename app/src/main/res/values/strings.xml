@@ -22,6 +22,12 @@
     <string name="sign_out_button">sign out</string>
     <string name="verify_email_button">create</string>
     <string name="process_complete">complete message</string>
+    <string name="from_location">Pickup Location</string>
+    <string name="to_location">Drop-off Location</string>
+    <string name="item_name">Enter your item\'s name</string>
+    <string name="item_weight">Enter your item\'s weight</string>
+    <string name="header_add_listing">Add a Listing</string>
+    <string name="add_listing">Submit</string>
 
 
     <string name="error_invalid_password">The Password needs to be 5 characters long and contain no spaces</string>

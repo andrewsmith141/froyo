@@ -18,6 +18,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import static android.content.ContentValues.TAG;
 
@@ -36,6 +38,7 @@ public class AuthFragment extends Fragment {
     private FirebaseAuth mAuth;
     private EditText email_register, password_register, email_signin,password_signin, display_name;
     private Button button_register, button_signin;
+    private DatabaseReference database;
 
 
     private OnFragmentInteractionListener mListener;
@@ -103,6 +106,7 @@ public class AuthFragment extends Fragment {
 
     public void submitRegister()
     {
+
         if (email_register.getText().length() > 0 && password_register.getText().length() > 0)
         {
             mAuth.createUserWithEmailAndPassword(
@@ -112,7 +116,8 @@ public class AuthFragment extends Fragment {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 FirebaseUser user = mAuth.getCurrentUser();
-
+                                database = FirebaseDatabase.getInstance().getReference();
+                                writeNewUser(user.getUid(),email_register.getText().toString(), display_name.getText().toString());
                                 mListener.onAuthFragmentInteraction();
 
                                 UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
@@ -147,7 +152,11 @@ public class AuthFragment extends Fragment {
         }
     }
 
+    private void writeNewUser(String id, String name, String email){
+        User user = new User(id, name, email);
 
+        database.child("users").child(id).setValue(user);
+    }
 
 
     public void submitSignIn()
