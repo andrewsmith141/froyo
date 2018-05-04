@@ -4,7 +4,6 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="uk.ac.tees.com2060.froyo.AddListingFragment">
 
     <TextView
@@ -83,17 +82,17 @@
         app:layout_constraintStart_toEndOf="@+id/textView_item_weight"
         app:layout_constraintTop_toBottomOf="@+id/editText_item_name" />
 
-    <TextView
-        android:id="@+id/textView_from_location"
+    <EditText
+        android:id="@+id/editText_from_location"
         android:layout_width="187dp"
         android:layout_height="36dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="36dp"
         android:hint="Pickup Location"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_to_location" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_item_weight" />
 
     <Button
         android:id="@+id/button_from_location"
@@ -105,20 +104,20 @@
         android:text="@string/from_location"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.666"
-        app:layout_constraintStart_toEndOf="@+id/textView_to_location"
+        app:layout_constraintStart_toEndOf="@+id/editText_to_location"
         app:layout_constraintTop_toBottomOf="@+id/editText_item_weight" />
 
-    <TextView
-        android:id="@+id/textView_to_location"
+    <EditText
+        android:id="@+id/editText_to_location"
         android:layout_width="186dp"
         android:layout_height="36dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="44dp"
         android:hint="Delivery Location"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_item_weight" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_from_location" />
 
     <Button
         android:id="@+id/button_to_location"
@@ -131,7 +130,7 @@
         android:text="@string/to_location"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView_from_location"
+        app:layout_constraintStart_toEndOf="@+id/editText_from_location"
         app:layout_constraintTop_toBottomOf="@+id/button_from_location"
         app:layout_constraintVertical_bias="0.057" />
 
@@ -139,15 +138,12 @@
         android:id="@+id/submit_add_listing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="120dp"
         android:text="@string/add_listing"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.852" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_to_location" />
 
 </android.support.constraint.ConstraintLayout>

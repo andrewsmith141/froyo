@@ -17,11 +17,20 @@ public class HomeFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public HomeFragment() {}
+    public HomeFragment() {}    //  Required empty constructor
 
 
     private TextView textView_test;
 
+    /**
+     *  Default onCreateView constructor which is called when creating a fragment
+     *  displays the username upon relog
+     *
+     * @param inflater  Creates objects associated with the given layout (XML) file
+     * @param container This can contains other view within which allows it to stack child views
+     * @param savedInstanceState    Allows data to be passed dynamically without loss of data
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

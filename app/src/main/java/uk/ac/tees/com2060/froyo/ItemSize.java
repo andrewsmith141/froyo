@@ -1,7 +1,4 @@
 package uk.ac.tees.com2060.froyo;
 
-/**
- * Created by s6090581 on 03/05/18.
- */
-
+//  Enumarable created with the intention of being used for selecting an item's size
 public enum ItemSize {  SMALL, MEDIUM, LARGE    }

@@ -1,23 +1,11 @@
 package uk.ac.tees.com2060.froyo;
 
 /**
- * Created by s6090581 on 02/05/18.
+ * Listing data structure used to store listing data
  */
-
 public class Listing {
 
-    /* Things that make up a listing
-    /   User ID             -> String
-    /   Item name           -> String
-    /   Item size           -> Enumarable (Small, Medium, Large)
-    /   Item Weight         -> Double
-    /   Pickup Location     -> TBD
-    /   General Location    -> String
-    /   Dropoff Location    -> TBD
-    /   Distance            -> Double
-    /   Image of item       -> TBD
-    */
-
+    //  Attributes which are assigned to each of the values which are entered into the database
     private String id;
     private String itemName;
     private String fromLocation;
@@ -26,8 +14,18 @@ public class Listing {
 
     public Listing(){}
 
+    /**
+     * Constructor for Listing which is used to create a new Listing
+     *
+     * @param id    User ID
+     * @param itemName  Item name
+     * @param fromLocation  Location item will be taken from
+     * @param toLocation    Location item will be taken to
+     * @param weight    Weight of item
+     */
     public Listing(String id, String itemName, String fromLocation, String toLocation,
                    double weight){
+
         this.id = id;
         this.itemName = itemName;
         this.fromLocation = fromLocation;
@@ -35,9 +33,40 @@ public class Listing {
         this.weight = weight;
     }
 
+    /**
+     * Get user ID
+     *
+     * @return id
+     */
     public String getId(){return this.id;}
+
+    /**
+     * Get item name
+     *
+     * @return itemName
+     */
     public String getName() {return this.itemName;}
+
+    /**
+     * Get item weight
+     *
+     * @return weight
+     */
     public double getWeight() {return this.weight;}
+
+    /**
+     * Get pickup location
+     *
+     * @return toLocation
+     */
+    public String getToLocation() {return this.toLocation;}
+
+    /**
+     * Get dropoff location
+     *
+     * @return fromLocation
+     */
+    public String getFromLocation() {return this.fromLocation;}
 
 
 }

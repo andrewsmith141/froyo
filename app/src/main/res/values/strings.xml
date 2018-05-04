@@ -22,22 +22,25 @@
     <string name="sign_out_button">sign out</string>
     <string name="verify_email_button">create</string>
     <string name="process_complete">complete message</string>
+
+    <!-- Strings related to Add Listing -->
     <string name="from_location">Pickup Location</string>
     <string name="to_location">Drop-off Location</string>
     <string name="item_name">Enter your item\'s name</string>
-    <string name="item_weight">Enter your item\'s weight</string>
+    <string name="item_weight">Enter your item\'s weight (KG)</string>
     <string name="header_add_listing">Add a Listing</string>
     <string name="add_listing">Submit</string>
+    <string name="thumbnail">Thumbnail</string>
 
-
+    <!-- Strings used for data validation -->
     <string name="error_invalid_password">The Password needs to be 5 characters long and contain no spaces</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
 
-
     <string name="password_message">Password</string>
     <string name="auth_failed" />
     <string name="signed_out" />
+
     <item name="email_create_account_button" type="id" />
     <item name="sign_out_button" type="id" />
     <item name="verify_email_button" type="id" />

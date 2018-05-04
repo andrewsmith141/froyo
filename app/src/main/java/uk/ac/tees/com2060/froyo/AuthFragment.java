@@ -34,12 +34,14 @@ import static android.content.ContentValues.TAG;
  */
 public class AuthFragment extends Fragment {
 
+    //  Attributes used for authenticating the user and getting the context
     private Context mContext = getContext();
     private FirebaseAuth mAuth;
-    private EditText email_register, password_register, email_signin,password_signin, display_name;
-    private Button button_register, button_signin;
     private DatabaseReference database;
 
+    //  Values used for the layout and adding data to the database
+    private EditText email_register, password_register, email_signin,password_signin, display_name;
+    private Button button_register, button_signin;
 
     private OnFragmentInteractionListener mListener;
 
@@ -47,6 +49,15 @@ public class AuthFragment extends Fragment {
         // Required empty public constructor
     }
 
+    /**
+     *  Default onCreateView constructor which is called when creating a fragment
+     *  Used for creating the auth fragment and layout
+     *
+     * @param inflater  Creates objects associated with the given layout (XML) file
+     * @param container This can contains other view within which allows it to stack child views
+     * @param savedInstanceState    Allows data to be passed dynamically without loss of data
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -63,6 +74,7 @@ public class AuthFragment extends Fragment {
         button_register = view.findViewById(R.id.button_register);
         button_signin = view.findViewById(R.id.button_signin);
 
+        //  used to identify the user
         mAuth = FirebaseAuth.getInstance();
 
         button_register.setOnClickListener(new View.OnClickListener() {
@@ -82,6 +94,11 @@ public class AuthFragment extends Fragment {
         return view;
     }
 
+    /**
+     * Attach the fragment to an existing activity
+     *
+     * @param context   The activity the fragment will be attached to
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -103,10 +120,13 @@ public class AuthFragment extends Fragment {
         void onAuthFragmentInteraction();
     }
 
-
+    /**
+     * submitRegister is used for registering for the app
+     */
     public void submitRegister()
     {
 
+        //  validation
         if (email_register.getText().length() > 0 && password_register.getText().length() > 0)
         {
             mAuth.createUserWithEmailAndPassword(
@@ -117,7 +137,9 @@ public class AuthFragment extends Fragment {
                             if (task.isSuccessful()) {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 database = FirebaseDatabase.getInstance().getReference();
-                                writeNewUser(user.getUid(),email_register.getText().toString(), display_name.getText().toString());
+
+                                //  Creating a new user in the database with similar credentials
+                                writeNewUser(user.getUid(), display_name.getText().toString(), email_register.getText().toString());
                                 mListener.onAuthFragmentInteraction();
 
                                 UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
@@ -152,18 +174,29 @@ public class AuthFragment extends Fragment {
         }
     }
 
+    /**
+     * Create a new User in the firebase database
+     *
+     * @param id    User ID
+     * @param name  User name
+     * @param email User Email
+     */
     private void writeNewUser(String id, String name, String email){
+        //  Create new user
         User user = new User(id, name, email);
-
+        //  Add User to the database
         database.child("users").child(id).setValue(user);
     }
 
-
+    /**
+     * Used for signing in to the App
+     */
     public void submitSignIn()
     {
+        //  Validation
         if (email_signin.getText().length() > 0 && password_signin.getText().length() > 0)
         {
-            mAuth.signInWithEmailAndPassword(
+            mAuth.signInWithEmailAndPassword(   //  Check if user Exists
                     email_signin.getText().toString(), password_signin.getText().toString())
                     .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                         @Override
@@ -189,12 +222,5 @@ public class AuthFragment extends Fragment {
                     .setPositiveButton("Okay", null)
                     .create().show();
         }
-
-
-
     }
-
-
-
-
 }
